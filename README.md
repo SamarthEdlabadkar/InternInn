@@ -1,7 +1,3 @@
-Here’s an enhanced version of the README with the new details:
-
----
-
 # InternInn
 
 > "Helping you with your internship needs so you can focus on your goals..."
