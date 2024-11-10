@@ -21,10 +21,10 @@ InternInn is built with the latest technology to ensure a smooth, responsive use
 
 | Name        | Logo                          |
 |-------------|-------------------------------|
-| Next.js     | ![Next.js Logo](/Images/next_js_logo.png) |
-| Material UI | ![Material UI Logo](/assets/images/2023/material_ui_logo.png) |
-| Flask       | ![Flask Logo](/assets/images/2023/flask_logo.png) |
-| MongoDB     | ![MongoDB Logo](/assets/images/2023/mongodb_logo.png) |
+| Next.js     | ![Next.js Logo](/Images/nest_js_logo.png) |
+| Material UI | ![Material UI Logo](/Images/material_ui_logo.png) |
+| Flask       | ![Flask Logo](/Images/flask_logo.png) |
+| MongoDB     | ![MongoDB Logo](/Images/MongoDB_logo.jpg) |
 
 ## Features
 
@@ -53,6 +53,3 @@ Upon opening InternInn, users land on a welcoming home page introducing our serv
 - **Expanded Budgeting Tools**  
    Adding more robust budgeting tools like calculators and detailed spending templates.
   
----
-
-Let me know if you want more customization or additional sections!
