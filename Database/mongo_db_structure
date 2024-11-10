@@ -1,0 +1,8 @@
+InternInn_test_db
+	user
+		full name
+		year
+		age
+		phone
+		email
+		password

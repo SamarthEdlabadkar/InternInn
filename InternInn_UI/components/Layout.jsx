@@ -6,8 +6,8 @@ const Layout = ({ children }) => {
     return (
         <>
             <Head>
-                <title>Blinder</title>
-                <meta name='description' content='Blinder making it simple for you to build and grow your SaaS applications, or any business idea' />
+                <title>InternInn</title>
+                <meta name='description' content='' />
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
