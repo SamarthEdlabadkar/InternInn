@@ -8,15 +8,33 @@ import LogoGrid from "../components/ui/LogoGrid";
 import Testimonials from "../components/ui/Testimonials";
 import ToolKit from "../components/ui/ToolKit";
 import Footer from "../components/ui/Footer";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next/client';
 
 export default function Home() {
-  const router = useRouter();
-
-  const {query} = router
-
-  const logined = false
-
+  const user = getCookie("user")
+  console.log(user)
+  if (user == ""){
+    return (
+      <>
+        <Head>
+          <meta name='robots' content='index' />
+        </Head>
+        <Hero />
+        <LogoGrid />
+      </>
+    );
+  }else{
+    return (
+      <>
+        <Head>
+          <meta name='robots' content='index' />
+        </Head>
+        <Hero />
+        <LogoGrid />
+      </>
+    );
+  }
   // try{
   //   const { full_name, year, age, phone, email} = router.query;
   //   logined = true
@@ -28,15 +46,4 @@ export default function Home() {
   //   console.log(full_name)
   // }
 
-  console.log(query)
-
-  return (
-    <>
-      <Head>
-        <meta name='robots' content='index' />
-      </Head>
-      <Hero />
-      <LogoGrid />
-    </>
-  );
 }

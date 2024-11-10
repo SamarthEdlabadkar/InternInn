@@ -6,17 +6,18 @@ import { FormEvent } from 'react';
 import toast, {Toaster} from "react-hot-toast"
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import {getIronSession} from "iron-session"
+import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next/client';
+// fail = fals
 
-// fail = false
-
-export const getSession = async() => {
-    const session = await getIronSession <SessionData>(cookies)
-}
-
-export default function GetStarted() {
+export default function Login() {
   const router = useRouter()
-  async function SignUp(email, password){
+  const user = getCookie("user")
+
+    if (user != "" && user != undefined){
+        router.push("/")
+    }
+
+  async function SignIn(email, password){
     
     const r = new Map()
 
@@ -59,22 +60,17 @@ export default function GetStarted() {
 
     console.log("submit")
     const formDataObject = new FormData(event.currentTarget);
-    const signup = await SignUp(formDataObject.get("email"), formDataObject.get("password"))
+    const signup = await SignIn(formDataObject.get("email"), formDataObject.get("password"))
 
     console.log(signup)
     console.log(signup.get("status"))
 
     if (signup.get("status") == true){
       toast.success(signup.get("message"))
+      setCookie("user", formDataObject.get("email"))
       router.push({
         pathname : "/",
-        query : {
-            full_name: formDataObject.get("name"),
-            year: formDataObject.get("year"),
-            age: formDataObject.get("age"),
-            phone: formDataObject.get("phone"),
-            email: formDataObject.get("email")
-        }})
+       })
     }else{
       toast.error(signup.get("message"))
     }

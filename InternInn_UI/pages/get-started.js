@@ -6,11 +6,18 @@ import { FormEvent } from 'react';
 import toast, {Toaster} from "react-hot-toast"
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
+import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next/client';
 
 // fail = false
 
 export default function GetStarted() {
   const router = useRouter()
+  const user = getCookie("user")
+
+  if (user != "" && user != undefined){
+      router.push("/")
+  }
+
   async function SignUp(full_name, year, age, phone, email, password, confirm_password){
     
     const r = new Map()

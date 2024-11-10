@@ -27,7 +27,8 @@ def signup():
         "age": received_data["age"],
         "phone": received_data["phone"],
         "email": received_data["email"],
-        "password": hashlib.sha256(received_data["password"].encode()).hexdigest()
+        "password": hashlib.sha256(received_data["password"].encode()).hexdigest(),
+        "loggined": False
     })
 
     return make_response(jsonify({"status": True, "message": "Sign up success"}))
