@@ -7,6 +7,7 @@ import toast, {Toaster} from "react-hot-toast"
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next/client';
+import React, { useEffect } from 'react';
 
 // fail = false
 
@@ -15,7 +16,9 @@ export default function GetStarted() {
   const user = getCookie("user")
 
   if (user != "" && user != undefined){
-      router.push("/")
+      deleteCookie("user")
+      toast.success("Sign out success")
+      router.push("/login")
   }
 
   async function SignUp(full_name, year, age, phone, email, password, confirm_password){

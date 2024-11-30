@@ -1,9 +1,14 @@
 import NavLink from "../NavLink"
+import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next/client';
+import toast, {Toaster} from "react-hot-toast";
+
+const user = getCookie("user")
 
 const Hero = () => (
     <section>
         <div className="custom-screen py-28 text-gray-600">
             <div className="space-y-5 max-w-4xl mx-auto text-center">
+                <Toaster position="top-center"></Toaster>
                 <h1 className="text-4xl text-gray-800 font-extrabold mx-auto sm:text-6xl">
                     Settle in for internship...
                 </h1>

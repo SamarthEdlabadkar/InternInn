@@ -1,20 +1,29 @@
 import Head from "next/head";
 import GradientWrapper from "../components/GradientWrapper";
-import CTA from "../components/ui/CTA";
-import Features from "../components/ui/Features";
-import FooterCTA from "../components/ui/FooterCTA";
 import Hero from "../components/ui/Hero";
 import LogoGrid from "../components/ui/LogoGrid";
-import Testimonials from "../components/ui/Testimonials";
 import ToolKit from "../components/ui/ToolKit";
 import Footer from "../components/ui/Footer";
 import { useRouter } from 'next/navigation';
 import { getCookie, getCookies, setCookie, deleteCookie, hasCookie } from 'cookies-next/client';
+import toast, {Toaster} from "react-hot-toast"
+import React, { useState, useEffect } from 'react';
 
 export default function Home() {
   const user = getCookie("user")
-  console.log(user)
-  if (user == ""){
+  const alert = getCookie("alert")
+  console.log(alert)
+
+  if (user != "" && user != undefined){
+
+    useEffect(() => {
+      if (alert != undefined){
+        toast.success("Welcome back... " + user.split("_")[0])
+      }
+    })
+
+    deleteCookie(alert)
+
     return (
       <>
         <Head>
@@ -35,15 +44,5 @@ export default function Home() {
       </>
     );
   }
-  // try{
-  //   const { full_name, year, age, phone, email} = router.query;
-  //   logined = true
-  // }catch(e){
-  //   console.log(e)
-  // }
-
-  // if (logined == true){
-  //   console.log(full_name)
-  // }
 
 }

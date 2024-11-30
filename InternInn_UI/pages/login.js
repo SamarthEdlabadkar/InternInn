@@ -47,6 +47,8 @@ export default function Login() {
     if (resData["status"] == true){
       r.set("status", true)
       r.set("message", "Login success")
+      r.set("name", resData["data"]["full_name"])
+      r.set("unique_id", resData["data"]["unique_id"])
     }else{
       r.set("status", false)
       r.set("message", resData["message"])
@@ -60,19 +62,20 @@ export default function Login() {
 
     console.log("submit")
     const formDataObject = new FormData(event.currentTarget);
-    const signup = await SignIn(formDataObject.get("email"), formDataObject.get("password"))
+    const signin = await SignIn(formDataObject.get("email"), formDataObject.get("password"))
 
-    console.log(signup)
-    console.log(signup.get("status"))
+    console.log(signin)
+    console.log(signin.get("status"))
 
-    if (signup.get("status") == true){
-      toast.success(signup.get("message"))
-      setCookie("user", formDataObject.get("email"))
+    if (signin.get("status") == true){
+      toast.success(signin.get("message"))
+      setCookie("user", signin.get("name") + "_" + signin.get("unique_id"))
+      setCookie("alert", "success")
       router.push({
         pathname : "/",
-       })
+      })
     }else{
-      toast.error(signup.get("message"))
+      toast.error(signin.get("message"))
     }
   } 
   

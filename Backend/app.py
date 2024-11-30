@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect, url_for, make_response, jsonify
 from pymongo import MongoClient
 import hashlib
+import string
+from random import choice
 
 app = Flask(__name__)
 client = MongoClient("localhost", 27017)
@@ -15,6 +17,7 @@ def home():
 @app.route("/api/signup", methods=["POST"])
 def signup():
     received_data = request.get_json(force=True)
+    unique_id = ''.join(choice(string.printable) for i in range(12))
     print(received_data.keys())
     users = user_collections.find({}, {"email": 1, "phone": 1})
     for user in users:
@@ -28,7 +31,7 @@ def signup():
         "phone": received_data["phone"],
         "email": received_data["email"],
         "password": hashlib.sha256(received_data["password"].encode()).hexdigest(),
-        "loggined": False
+        "unique_id": unique_id
     })
 
     return make_response(jsonify({"status": True, "message": "Sign up success"}))
@@ -37,7 +40,7 @@ def signup():
 def login():
     received_data = request.get_json(force=True)
     print(received_data)
-    users = user_collections.find({}, {"full_name": 1, "year": 1, "age": 1, "phone": 1, "email": 1, "password": 1})
+    users = user_collections.find({}, {"full_name": 1, "year": 1, "age": 1, "phone": 1, "email": 1, "password": 1, "unique_id": 1})
 
     pass_ = False
     found_user = users[0]
@@ -51,7 +54,7 @@ def login():
     if pass_ == False:
         return make_response(jsonify({"status": False, "message": "Invalid credential"}))
     else:
-        return make_response(jsonify({"status": True, "data": {"full_name": found_user["full_name"], "year": found_user["year"],"age": found_user["age"],"phone": found_user["phone"],"email": found_user["email"]}}))
+        return make_response(jsonify({"status": True, "data": {"full_name": found_user["full_name"], "year": found_user["year"],"age": found_user["age"],"phone": found_user["phone"],"email": found_user["email"], "unique_id": found_user["unique_id"]}}))
 
 if __name__=="__main__":
     app.run(host = "localhost", port = 5000, debug = True)

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Brand from '../Brand'
 import NavLink from '../NavLink'
 
-const Navbar = () => {
+export default function Navbar({children}) {
 
     const [state, setState] = useState(false)
     const { events } = useRouter();
@@ -71,7 +71,7 @@ const Navbar = () => {
                             }
                             <li>
                                 <NavLink
-                                    href="/get-started"
+                                    href="/login"
                                     className="block font-medium text-sm text-white bg-gray-800 hover:bg-gray-600 active:bg-gray-900 md:inline"
                                 >
                                     Let's work
@@ -84,5 +84,3 @@ const Navbar = () => {
         </header>
     )
 }
-
-export default Navbar
